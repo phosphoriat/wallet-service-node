@@ -1,0 +1,46 @@
+{
+  "name": "wallets-service",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NestJS port of Laravel Ethereum deposit indexer and withdrawal API",
+  "engines": {
+    "node": ">=24.15.0"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "start": "node dist/src/main.js",
+    "start:dev": "tsc -w",
+    "cli": "node dist/src/cli.js",
+    "db:migrate": "npm run cli -- db:migrate",
+    "db:seed": "npm run cli -- db:seed",
+    "test": "npm run build && node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "format": "prettier --write src test *.js *.json *.md *.yaml",
+    "format:check": "prettier --check src test *.js *.json *.md *.yaml",
+    "clean": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true });\""
+  },
+  "dependencies": {
+    "@nestjs/common": "^12.5.0",
+    "@nestjs/core": "^12.5.0",
+    "@nestjs/platform-express": "^12.5.0",
+    "dotenv": "^18.0.10",
+    "mysql2": "^3.24.6",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "typeorm": "^1.1.3"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.5.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "better-sqlite3": "^12.11.1",
+    "jest": "^30.5.2",
+    "prettier": "^3.10.1",
+    "typescript": "^7.0.2"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "bracketSpacing": false,
+    "printWidth": 120
+  }
+}
